@@ -160,8 +160,11 @@ def checkVolumePredict(filename, sensitivity):
   if highest > sensitivity:
     print_prediction(filename)
     print(highest)
+    os.system("rm " + filename)
+
   else:
-    subprocess.run(["rm" , filename])
+    os.system("rm " + filename)
+    # subprocess.run(["rm" , filename])
     print('too quiet', highest)
 
 ###SYSTEM TEST
@@ -182,7 +185,7 @@ print(old)
 
 while True:
     new = os.listdir(path_to_watch)
-    if len(new) != 0:
+    if len(new) > 1:
         #newfile = list(set(new))
         print(new[0])
         checkVolumePredict(new[0], -40); #Determines decibel threshold
@@ -192,25 +195,3 @@ while True:
 
     else:
         continue
-
-#while (True):
-#samples_path = '/home/samus/Music/buffer/'
-#filename = sorted(os. listdir(samples_path), key=os. path. getctime)[0]
-# # samples_folder = '/content/drive/MyDrive/samples/'
-# timestamp = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
-# # filename = samples_folder + timestamp + ".wav"
-# filename = samples_path + timestamp + ".wav"
-# print(timestamp)
-
-# #hw id will change on different hardware
-# cmd = 'arecord -D hw:3,0 -t wav -f S16_LE -r 44100 -c 2 -d 3 ' + filename 
-
-# os.system(cmd) #records a three second sample
-
-#checkVolumePredict(filename, -40); #Determines decibel threshold
-# playsound(filename)
-# checkVolume(filename)
-
-#timestamp = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
-#print(timestamp)
-
