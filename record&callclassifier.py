@@ -12,15 +12,11 @@ import datetime
 import subprocess
 
 samples_path = '/home/samus/Music/buffer/'
-# samples_folder = '/content/drive/MyDrive/samples/'
-timestamp = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
-# filename = samples_folder + timestamp + ".wav"
-filename = samples_path + timestamp + ".wav"
-print(timestamp)
-
-cmd = 'arecord -D hw:3,0 -t wav -f S16_LE -r 44100 -c 2 -d 3 ' + filename
 
 while True:
-    os.system(cmd) #records a three second sample
+    timestamp = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
+    filename = samples_path + timestamp + ".wav"
+    print(timestamp)
 
-#subprocess.run(["python" , "live_sound_classifier_only.py"])
+    cmd = 'arecord -D hw:3,0 -t wav -f S16_LE -r 44100 -c 2 -d 3 ' + filename
+    os.system(cmd) #records a three second sample and timestamps it
